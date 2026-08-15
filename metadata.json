@@ -1,0 +1,8 @@
+{
+  "name": "Tarragona Neta",
+  "description": "Plataforma ciudadana y vecinal creada en Tarragona para denunciar la suciedad urbana y exigir soluciones al Ayuntamiento.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
