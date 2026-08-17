@@ -1,0 +1,268 @@
+---
+import '../index.css';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: 'ca' | 'es';
+}
+
+const { title, description, lang } = Astro.props;
+
+const t = {
+  ca: {
+    headerBadge: "Plataforma Veïnal",
+    footerRights: "Plataforma per una Tarragona Neta.",
+    footerTagline: "Per una ciutat digna per als seus veïns.",
+    legal: "Avís Legal",
+    contact: "Contacte",
+    brand: "Tarragona Neta"
+  },
+  es: {
+    headerBadge: "Plataforma Vecinal",
+    footerRights: "Plataforma per una Tarragona Neta.",
+    footerTagline: "Por una ciudad digna para sus vecinos.",
+    legal: "Aviso Legal",
+    contact: "Contacto",
+    brand: "Tarragona Neta"
+  }
+}[lang];
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <style is:global>
+      /* Custom typography classes using Google Fonts */
+      body {
+        font-family: 'Work Sans', sans-serif;
+      }
+      
+      h1, h2, h3, h4, h5, h6, .font-display {
+        font-family: 'Outfit', sans-serif;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 12px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #09090b;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #dc2626;
+        border: 3px solid #09090b;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ef4444;
+      }
+
+      /* Lenis layout styling */
+      html.lenis, html.lenis body {
+        height: auto;
+      }
+      .lenis-smooth {
+        scroll-behavior: auto !important;
+      }
+      .lenis-smooth [data-lenis-prevent] {
+        overflow: clip;
+      }
+      .lenis-target {
+        scroll-behavior: auto !important;
+      }
+      
+      /* Keyboard Focus Rings */
+      *:focus-visible {
+        outline: 4px solid #dc2626 !important;
+        outline-offset: 2px !important;
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-zinc-100 text-zinc-950 selection:bg-red-600 selection:text-white overflow-x-hidden">
+    
+    <!-- Header -->
+    <header class="border-b-4 border-zinc-950 px-4 md:px-8 py-4 flex justify-between items-center uppercase font-black tracking-wider text-sm sticky top-0 bg-zinc-100 z-50 h-[72px]">
+      <a href={lang === 'ca' ? '/' : '/es'} class="flex items-center gap-2 hover:text-red-600 transition-colors">
+        <span class="text-xl font-extrabold tracking-tighter">{t.brand}</span>
+      </a>
+      
+      <div class="flex items-center gap-3">
+         <span class="hidden sm:inline-block bg-red-600 text-white px-3 py-1 font-bold text-xs mr-3 border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)]">
+           {t.headerBadge}
+         </span>
+         
+         <div class="flex items-center border-2 border-zinc-950 shadow-[3px_3px_0px_0px_rgba(9,9,11,1)] overflow-hidden">
+           <a 
+             href="/" 
+             class={`px-3 py-1 font-bold text-xs transition-colors ${lang === 'ca' ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-950 hover:bg-zinc-200'}`}
+           >
+             CAT
+           </a>
+           <a 
+             href="/es" 
+             class={`px-3 py-1 font-bold text-xs border-l-2 border-zinc-950 transition-colors ${lang === 'es' ? 'bg-zinc-950 text-white' : 'bg-white text-zinc-950 hover:bg-zinc-200'}`}
+           >
+             ESP
+           </a>
+         </div>
+      </div>
+    </header>
+
+    <!-- Main Content Slot -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-zinc-950 text-zinc-50 px-6 md:px-12 py-16 flex flex-col gap-12 font-bold uppercase tracking-widest text-xs border-t-4 border-zinc-950">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div>
+          <p class="text-lg font-black tracking-tight text-white mb-2">{t.brand}</p>
+          <p class="text-zinc-400">© {new Date().getFullYear()} {t.footerRights}</p>
+          <p class="text-zinc-500 mt-1 font-medium">{t.footerTagline}</p>
+        </div>
+        <div class="flex flex-wrap gap-6 sm:gap-10">
+          <a href="#" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.legal}</a>
+          <a href="#" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.contact}</a>
+        </div>
+      </div>
+      <div class="pt-8 border-t-2 border-zinc-900 text-zinc-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          Fet per <a href="https://elbalcodigital.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">ElBalcoDigital</a>
+        </div>
+        <div class="text-[10px] text-zinc-600 max-w-md normal-case font-normal leading-relaxed">
+          Aquesta plataforma és una iniciativa ciutadana independent de denúncia i acció veïnal. No tenim vinculació amb cap partit polític ni entitat municipal.
+        </div>
+      </div>
+    </footer>
+
+    <!-- i18n redirection / client scripts -->
+    <script>
+      import Lenis from 'lenis';
+      import { gsap } from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Smooth scroll with Lenis
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        touchMultiplier: 1.5,
+      });
+
+      lenis.on('scroll', ScrollTrigger.update);
+
+      gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+      });
+
+      gsap.ticker.lagSmoothing(0);
+
+      // Save lenis to window object so other scripts can access it
+      window.lenis = lenis;
+
+      // GSAP Animations (initialized after layout load)
+      document.addEventListener('DOMContentLoaded', () => {
+        // Reduced motion check
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        
+        if (prefersReducedMotion) {
+          console.log('Reduced motion preferred. Skipping scroll triggers.');
+          return;
+        }
+
+        // Horizontal Gallery Pinning
+        const galleryItems = gsap.utils.toArray('.gallery-item');
+        const galleryScroll = document.querySelector('#gallery-scroll');
+        const galleryContainer = document.querySelector('#gallery-container');
+
+        if (galleryItems.length > 0 && galleryScroll && galleryContainer) {
+          gsap.to(galleryItems, {
+            xPercent: -100 * (galleryItems.length - 1),
+            ease: "none",
+            scrollTrigger: {
+              trigger: galleryContainer,
+              pin: true,
+              scrub: 0.5,
+              snap: 1 / (galleryItems.length - 1),
+              // Start when top of container hits top of viewport
+              start: "top top",
+              // End based on scroll width of horizontal container
+              end: () => "+=" + (galleryScroll.scrollWidth - window.innerWidth),
+              invalidateOnRefresh: true,
+            }
+          });
+
+          // Horizontal scroll progress bar
+          gsap.to('#scroll-progress', {
+            scaleX: 1,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: galleryContainer,
+              start: 'top top',
+              end: () => "+=" + (galleryScroll.scrollWidth - window.innerWidth),
+              scrub: true,
+            }
+          });
+        }
+
+        // Fade in reveals for stark design elements
+        const fadeRevealItems = gsap.utils.toArray('.scroll-reveal');
+        fadeRevealItems.forEach((item: any) => {
+          gsap.fromTo(item, 
+            { opacity: 0, y: 40 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 88%",
+                toggleActions: "play none none none"
+              }
+            }
+          );
+        });
+
+        // Split text character/word reveal for hero headline
+        const wordReveal = document.querySelectorAll('.hero-word-reveal');
+        if (wordReveal.length > 0) {
+          gsap.from(wordReveal, {
+            opacity: 0,
+            y: 30,
+            duration: 0.6,
+            stagger: 0.1,
+            ease: 'power3.out',
+            delay: 0.3
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

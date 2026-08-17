@@ -1,0 +1,655 @@
+---
+import Layout from '../layouts/Layout.astro';
+import BeforeAfter from '../components/BeforeAfter.astro';
+import heroImg from '../../assets/hero-image.jpeg';
+---
+
+<Layout 
+  title="Tarragona Neta | Plataforma Veïnal contra la brutícia i l'abandonament"
+  description="Plataforma ciutadana i veïnal per denunciar la brutícia urbana, l'acumulació incontrolada de residus i la insalubritat als carrers de Tarragona."
+  lang="ca"
+>
+  <!-- Hero Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-12 min-h-[90vh] border-b-4 border-zinc-950 bg-zinc-100">
+    <!-- Left Hero Content -->
+    <div class="lg:col-span-7 p-6 md:p-12 lg:p-16 flex flex-col justify-center border-b-4 lg:border-b-0 lg:border-r-4 border-zinc-950">
+      <div class="max-w-3xl">
+        <!-- Badge -->
+        <span class="inline-block bg-yellow-400 text-zinc-950 font-black uppercase text-xs tracking-wider px-3 py-1 border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)] mb-6">
+          ALERTA CIUTADANA
+        </span>
+        
+        <h1 class="text-6xl md:text-8xl lg:text-[6.5vw] font-black uppercase leading-[0.85] tracking-tighter text-zinc-950">
+          <span class="hero-word-reveal inline-block">Exigim</span> <br />
+          <span class="hero-word-reveal text-red-600 inline-block">Solucions.</span> <br />
+          <span class="hero-word-reveal inline-block">No excuses.</span>
+        </h1>
+        
+        <p class="mt-8 text-xl md:text-2xl font-medium leading-relaxed tracking-tight text-zinc-800">
+          Tarragona Neta és una plataforma ciutadana creada per denunciar la brutícia urbana, l'acumulació incontrolada de residus i la insalubritat als nostres carrers.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="mt-10 flex flex-col sm:flex-row gap-4">
+          <a 
+            href="#signar" 
+            class="inline-flex items-center justify-between bg-zinc-950 text-white px-8 py-5 text-lg font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-colors border-2 border-zinc-950 shadow-[5px_5px_0px_0px_rgba(220,38,38,1)] active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_0px_rgba(220,38,38,1)]"
+          >
+            <span>Signar Manifest</span>
+            <svg class="ml-4 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+            </svg>
+          </a>
+          <a 
+            href="#plataforma" 
+            class="inline-flex items-center justify-center border-4 border-zinc-950 text-zinc-950 bg-white px-8 py-5 text-lg font-black uppercase tracking-widest hover:bg-zinc-950 hover:text-white transition-colors shadow-[5px_5px_0px_0px_rgba(9,9,11,1)] active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_0px_rgba(9,9,11,1)]"
+          >
+            <span>La Plataforma</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Hero Stats / Image Overlay -->
+    <div class="lg:col-span-5 flex flex-col justify-between bg-zinc-950 text-white min-h-[50vh] lg:min-h-full">
+      <!-- High contrast image with color blend -->
+      <div class="relative flex-1 min-h-[250px] lg:min-h-[auto] overflow-hidden border-b-4 border-zinc-950">
+        <img 
+          src={heroImg.src} 
+          alt="Calle descuidada con residuos"
+          class="absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-75"
+        />
+        <div class="absolute inset-0 bg-red-700 mix-blend-multiply opacity-25"></div>
+        <div class="absolute bottom-4 left-4 bg-zinc-950 text-white font-mono text-[10px] tracking-widest px-2 py-0.5 border border-zinc-800">
+          PLAÇA DE LA FONT, NOVEMBRE 2025
+        </div>
+      </div>
+      
+      <!-- Stats Board -->
+      <div class="p-6 md:p-8 bg-zinc-950 border-t-2 border-zinc-900 grid grid-cols-2 gap-4 md:gap-6">
+        <div class="border-2 border-zinc-800 p-4 bg-zinc-900/50">
+          <span class="block text-zinc-500 font-bold text-[10px] tracking-wider uppercase">Signatures Change.org</span>
+          <span class="text-3xl md:text-4xl font-black text-red-500 tracking-tight">2.590</span>
+        </div>
+        <div class="border-2 border-zinc-800 p-4 bg-zinc-900/50">
+          <span class="block text-zinc-500 font-bold text-[10px] tracking-wider uppercase">Grups de Treball</span>
+          <span class="text-3xl md:text-4xl font-black text-yellow-400 tracking-tight">4</span>
+        </div>
+        <div class="border-2 border-zinc-800 p-4 bg-zinc-900/50">
+          <span class="block text-zinc-500 font-bold text-[10px] tracking-wider uppercase">Promotors Veïnals</span>
+          <span class="text-3xl md:text-4xl font-black text-white tracking-tight">6</span>
+        </div>
+        <div class="border-2 border-zinc-800 p-4 bg-zinc-900/50">
+          <span class="block text-zinc-500 font-bold text-[10px] tracking-wider uppercase">Estatus Campanya</span>
+          <span class="text-lg md:text-xl font-black text-zinc-950 bg-yellow-400 px-2 py-1 inline-block uppercase text-center w-full mt-1">En Lluita</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Horizontal Scroll Section (Pinned horror gallery) -->
+  <section id="gallery-container" class="relative bg-zinc-950 text-white border-b-4 border-zinc-950 overflow-hidden h-screen flex flex-col justify-between">
+    <!-- Header inside pinning section -->
+    <div class="p-6 md:p-12 w-full flex flex-col sm:flex-row sm:items-end justify-between z-10 bg-gradient-to-b from-zinc-950 to-transparent">
+      <div>
+        <span class="text-red-500 font-black tracking-widest text-xs uppercase block mb-2">ARXIU VISUAL DE LA DEIXADESA</span>
+        <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter">La Realitat del Nostre Abast</h2>
+      </div>
+      <p class="text-zinc-400 font-medium max-w-sm mt-4 sm:mt-0 text-sm">
+        Fes scroll cap avall per lliscar lateralment a través de les denúncies reals recopilades pels veïns.
+      </p>
+    </div>
+
+    <!-- Scrolling Track -->
+    <div id="gallery-scroll" class="flex w-[400vw] h-[65vh] items-center shrink-0">
+      
+      <!-- Slide 1 -->
+      <div class="gallery-item w-screen h-full px-6 md:px-12 flex items-center justify-center shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-6 md:p-10 relative">
+          <div class="md:col-span-7 h-[300px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Contenedores desbordados" />
+            <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
+          </div>
+          <div class="md:col-span-5 flex flex-col justify-between py-2">
+            <div>
+              <span class="bg-red-600 text-zinc-950 font-black text-xs px-3 py-1 uppercase tracking-wider inline-block mb-4">INFORME #042</span>
+              <h3 class="text-3xl md:text-5xl font-black uppercase leading-none mb-4">Contenidors Desbordats</h3>
+              <p class="text-zinc-400 text-base md:text-lg leading-relaxed">
+                L'acumulació sistemàtica de bosses de brossa fora dels contenidors genera males olors i l'aparició de plagues de rosegadors.
+              </p>
+            </div>
+            <div class="mt-6 pt-6 border-t border-zinc-800 flex justify-between items-center text-sm font-mono">
+              <span class="text-yellow-400">Torreforta // C. Riu Clar</span>
+              <span class="text-zinc-500">12 Octubre</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="gallery-item w-screen h-full px-6 md:px-12 flex items-center justify-center shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-6 md:p-10 relative">
+          <div class="md:col-span-7 h-[300px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Mobiliario destruido" />
+            <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
+          </div>
+          <div class="md:col-span-5 flex flex-col justify-between py-2">
+            <div>
+              <span class="bg-red-600 text-zinc-950 font-black text-xs px-3 py-1 uppercase tracking-wider inline-block mb-4">INFORME #089</span>
+              <h3 class="text-3xl md:text-5xl font-black uppercase leading-none mb-4">Mobiliari Destruït</h3>
+              <p class="text-zinc-400 text-base md:text-lg leading-relaxed">
+                Parcs infantils plens de brossa, bancs trencats i contenidors cremats sense que l'Ajuntament reposi els materials ni netegi la zona.
+              </p>
+            </div>
+            <div class="mt-6 pt-6 border-t border-zinc-800 flex justify-between items-center text-sm font-mono">
+              <span class="text-yellow-400">Campclar // Riu Glorieta</span>
+              <span class="text-zinc-500">15 Octubre</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="gallery-item w-screen h-full px-6 md:px-12 flex items-center justify-center shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-6 md:p-10 relative">
+          <div class="md:col-span-7 h-[300px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Abandono total" />
+            <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
+          </div>
+          <div class="md:col-span-5 flex flex-col justify-between py-2">
+            <div>
+              <span class="bg-red-600 text-zinc-950 font-black text-xs px-3 py-1 uppercase tracking-wider inline-block mb-4">INFORME #104</span>
+              <h3 class="text-3xl md:text-5xl font-black uppercase leading-none mb-4">Abandonament Històric</h3>
+              <p class="text-zinc-400 text-base md:text-lg leading-relaxed">
+                Els carrers de la Part Alta pateixen taques de greix permanents, acumulació de caixes de negocis i brutícia acumulada a les cantonades medievals.
+              </p>
+            </div>
+            <div class="mt-6 pt-6 border-t border-zinc-800 flex justify-between items-center text-sm font-mono">
+              <span class="text-yellow-400">Part Alta // Pl. de la Font</span>
+              <span class="text-zinc-500">18 Octubre</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="gallery-item w-screen h-full px-6 md:px-12 flex items-center justify-center shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-6 md:p-10 relative">
+          <div class="md:col-span-7 h-[300px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1589839958933-28f09b5ee948?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Incivisme descontrolado" />
+            <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
+          </div>
+          <div class="md:col-span-5 flex flex-col justify-between py-2">
+            <div>
+              <span class="bg-red-600 text-zinc-950 font-black text-xs px-3 py-1 uppercase tracking-wider inline-block mb-4">INFORME #121</span>
+              <h3 class="text-3xl md:text-5xl font-black uppercase leading-none mb-4">Abocaments Il·legals</h3>
+              <p class="text-zinc-400 text-base md:text-lg leading-relaxed">
+                A les zones de Llevant es produeixen abocaments de runes, pneumàtics i electrodomèstics de forma il·legal sense cap tipus de vigilància ni sanció.
+              </p>
+            </div>
+            <div class="mt-6 pt-6 border-t border-zinc-800 flex justify-between items-center text-sm font-mono">
+              <span class="text-yellow-400">Llevant // Camí de ronda</span>
+              <span class="text-zinc-500">22 Octubre</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Scroll progress bar and details -->
+    <div class="w-full bg-zinc-900 border-t-2 border-zinc-800 p-4 md:px-12 flex justify-between items-center z-10">
+      <div class="flex items-center gap-4 text-xs font-mono text-zinc-500 uppercase">
+        <span>01 // Torreforta</span>
+        <span>02 // Campclar</span>
+        <span>03 // Part Alta</span>
+        <span>04 // Llevant</span>
+      </div>
+      <!-- Progress Bar Track -->
+      <div class="w-48 md:w-64 h-1.5 bg-zinc-800 overflow-hidden relative">
+        <div id="scroll-progress" class="absolute inset-y-0 left-0 w-full bg-red-600 origin-left scale-x-0"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Initiatives and Origin Section -->
+  <section class="border-b-4 border-zinc-950 bg-white py-16 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <span class="text-red-600 font-black tracking-widest text-xs uppercase block mb-3">L'ORIGEN DE LA LLUITA</span>
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-12">
+        Iniciatives Ciutadanes
+      </h2>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        <!-- Monica Card -->
+        <div class="lg:col-span-5 border-4 border-zinc-950 bg-yellow-400 p-8 shadow-[6px_6px_0px_0px_rgba(9,9,11,1)] flex flex-col justify-between">
+          <div>
+            <span class="bg-zinc-950 text-white font-mono text-xs px-2.5 py-1 uppercase tracking-wider inline-block mb-6">Fundadora</span>
+            <h3 class="text-3xl font-black uppercase leading-none mb-4">Mónica Novés Nadal</h3>
+            <p class="text-zinc-900 font-bold text-sm uppercase tracking-wide mb-6">Metgessa i veïna de Tarragona</p>
+            <p class="text-zinc-950 text-base md:text-lg leading-relaxed font-medium">
+              Davant la passivitat de l'administració i el deteriorament de la ciutat, va decidir liderar la defense del dret a un entorn saludable iniciant una recollida de signatures a Change.org i impulsant la creació de la Plataforma.
+            </p>
+          </div>
+          <div class="mt-8 border-t-2 border-zinc-950 pt-4 text-xs font-mono uppercase text-zinc-900 flex justify-between">
+            <span>2 Iniciatives Actives</span>
+            <span>Tarragona, 2026</span>
+          </div>
+        </div>
+
+        <!-- Initiatives Details -->
+        <div class="lg:col-span-7 flex flex-col gap-6 justify-between">
+          <!-- Change.org Petition -->
+          <div class="border-4 border-zinc-950 bg-zinc-100 p-6 md:p-8 shadow-[6px_6px_0px_0px_rgba(9,9,11,1)] flex flex-col justify-between h-full">
+            <div>
+              <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                <div>
+                  <span class="text-red-600 font-bold text-xs uppercase tracking-widest block">INICIATIVA 01</span>
+                  <h4 class="text-2xl font-black uppercase tracking-tight">Petició a Change.org</h4>
+                </div>
+                <a 
+                  href="https://www.change.org/tarragonalimpia" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  class="bg-red-600 text-white font-black text-xs uppercase tracking-widest px-4 py-2 border-2 border-zinc-950 shadow-[3px_3px_0px_0px_rgba(9,9,11,1)] hover:bg-zinc-950 transition-colors"
+                >
+                  Signar a Change.org
+                </a>
+              </div>
+              
+              <p class="text-zinc-800 text-base mb-6 font-medium">
+                Sota el lema <strong class="text-zinc-950">"No más suciedad en Tarragona"</strong>, aquesta campanya ha reunit més de <span class="bg-red-600 text-white font-black px-1.5 py-0.5">2.590 signatures</span> de veïns que exigeixen solucions immediates.
+              </p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-t-2 border-zinc-950 pt-6">
+              <div>
+                <span class="block text-zinc-500 font-black text-[10px] tracking-wider uppercase mb-2">Objectius de la Petició</span>
+                <ul class="text-xs font-bold space-y-1.5 uppercase text-zinc-800">
+                  <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-red-600"></span> Intensificar neteja de carrers</li>
+                  <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-red-600"></span> Vigilància i sancions efectives</li>
+                </ul>
+              </div>
+              <div class="sm:pt-6">
+                <ul class="text-xs font-bold space-y-1.5 uppercase text-zinc-800">
+                  <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-red-600"></span> Zones adaptades per a mascotes</li>
+                  <li class="flex items-center gap-2"><span class="w-1.5 h-1.5 bg-red-600"></span> Educació i conscienciació</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- The Platform Creation -->
+          <div class="border-4 border-zinc-950 bg-zinc-950 text-white p-6 md:p-8 shadow-[6px_6px_0px_0px_rgba(9,9,11,1)]">
+            <span class="text-yellow-400 font-bold text-xs uppercase tracking-widest block">INICIATIVA 02</span>
+            <h4 class="text-2xl font-black uppercase tracking-tight mb-4 text-white">Plataforma per una Tarragona Neta</h4>
+            <p class="text-zinc-300 text-sm md:text-base leading-relaxed font-medium">
+              Estructura veïnal permanent per donar continuïtat a la pressió ciutadana, organitzar grups de treball i fiscalitzar de forma constant el compliment del contracte municipal de neteja.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Context and Before/After Split Screen Section -->
+  <section class="grid grid-cols-1 lg:grid-cols-2 border-b-4 border-zinc-950 bg-zinc-950 text-zinc-50">
+    <div class="p-8 md:p-12 lg:p-16 flex flex-col justify-center border-b-4 lg:border-b-0 lg:border-r-4 border-zinc-950">
+      <span class="text-red-500 font-black tracking-widest text-xs uppercase block mb-3">EL COMPROMÍS FALTANT</span>
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6 scroll-reveal">
+        Deixadesa i<br/><span class="text-red-500">insalubritat.</span>
+      </h2>
+      <div class="space-y-4 text-sm md:text-base font-medium leading-relaxed text-zinc-300 scroll-reveal">
+        <p>
+          Actualment, a Tarragona ens trobem amb un greu problema de deixadesa, brutícia i insalubritat generalitzat a tot el centre i els seus barris. Només cal sortir a fer un tomb per observar la brossa que vessa dels contenidors i omple les vies públiques, generant no només una imatge indigna, sinó també males olors, plagues i riscos sanitaris intolerables.
+        </p>
+        <p class="border-l-4 border-red-600 pl-4 py-1 text-zinc-400 italic font-normal">
+          Aquesta situació és fruit de l'incivisme d'alguns ciutadans combinat amb la greu deficiència dels serveis de neteja de l'Ajuntament, el qual incompleix reiteradament les seves obligacions de garantir la neteja, sostenibilitat i qualitat del medi ambient i la salut pública.
+        </p>
+        <p class="text-xs uppercase font-mono tracking-wider text-yellow-400 pt-2">
+          Drets vulnerats: Arts. 27-30 Estatut d'Autonomia de Catalunya // Art. 26 LRBRL
+        </p>
+      </div>
+    </div>
+    <div class="p-6 md:p-12 flex flex-col items-center justify-center bg-zinc-900">
+      <BeforeAfter 
+        beforeImg="https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&q=80&w=1200"
+        afterImg="https://images.unsplash.com/photo-1476483543940-9a2ebfdf1095?auto=format&fit=crop&q=80&w=1200"
+        beforeLabel="Abans (Realitat)"
+        afterLabel="Després (Exigència)"
+      />
+    </div>
+  </section>
+
+  <!-- Marc Legal i Drets Section -->
+  <section class="bg-zinc-900 text-white py-16 px-6 border-b-4 border-zinc-950">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="bg-red-600 text-white text-xs font-black px-3 py-1 uppercase tracking-widest inline-block mb-4 shadow-[2px_2px_0px_0px_rgba(255,255,255,1)]">
+          MARC JURÍDIC i DRETS FONAMENTALS
+        </span>
+        <h2 class="text-3xl md:text-5xl font-black uppercase tracking-tighter leading-none text-white">
+          El Dret a Viure en un Entorn Net
+        </h2>
+        <p class="text-zinc-400 font-medium text-sm md:text-base mt-4">
+          La deixadesa del servei municipal no és només una molèstia estètica, sinó una violació explícita de diversos marcs normatius autonòmics, estatals i europeus.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- European Law -->
+        <div class="border-2 border-zinc-800 p-6 bg-zinc-950 flex flex-col justify-between">
+          <div>
+            <span class="text-red-500 font-mono text-[10px] tracking-widest uppercase block mb-3">Àmbit Europeu</span>
+            <h3 class="text-xl font-black uppercase text-white mb-4">Directiva i Carta de la UE</h3>
+            <p class="text-zinc-400 text-sm font-medium leading-relaxed">
+              L'article 37 de la Carta dels Drets Fonamentals de la UE i l'article 13 de la Directiva 2008/98/CE exigeixen la protecció de la salut humana i el medi ambient en la gestió de residus.
+            </p>
+          </div>
+          <div class="border-t border-zinc-800 pt-4 mt-6 text-zinc-650 font-mono text-[10px] uppercase">
+            Art. 37 Carta UE // Art. 13 Directiva
+          </div>
+        </div>
+
+        <!-- Spanish Constitution -->
+        <div class="border-2 border-zinc-800 p-6 bg-zinc-950 flex flex-col justify-between">
+          <div>
+            <span class="text-yellow-400 font-mono text-[10px] tracking-widest uppercase block mb-3">Àmbit Estatal</span>
+            <h3 class="text-xl font-black uppercase text-white mb-4">Constitució Espanyola</h3>
+            <p class="text-zinc-400 text-sm font-medium leading-relaxed">
+              L'article 45 de la Constitució Espanyola (CE) garanteix el dret de tothom a gaudir d'un medi ambient adequat per al desenvolupament de la persona, així com el deure de conservar-lo.
+            </p>
+          </div>
+          <div class="border-t border-zinc-800 pt-4 mt-6 text-zinc-650 font-mono text-[10px] uppercase">
+            Article 45 Constitució (CE)
+          </div>
+        </div>
+
+        <!-- Catalan Law & Local Law -->
+        <div class="border-2 border-zinc-800 p-6 bg-zinc-950 flex flex-col justify-between">
+          <div>
+            <span class="text-red-500 font-mono text-[10px] tracking-widest uppercase block mb-3">Àmbit Autonòmic i Local</span>
+            <h3 class="text-xl font-black uppercase text-white mb-4">Estatut i Llei de Bases</h3>
+            <p class="text-zinc-400 text-sm font-medium leading-relaxed">
+              Els articles 27-30 de l'Estatut d'Autonomia i l'article 26 de la LRBRL obliguen els Ajuntaments a garantir serveis públics de neteja que protegeixin la salut pública dels veïns.
+            </p>
+          </div>
+          <div class="border-t border-zinc-800 pt-4 mt-6 text-zinc-650 font-mono text-[10px] uppercase">
+            Arts. 27-30 Estatut // Art. 26 LRBRL
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Plan de Acció Grid -->
+  <section id="plan" class="grid grid-cols-1 lg:grid-cols-12 border-b-4 border-zinc-950 bg-zinc-100">
+    <div class="lg:col-span-5 p-8 md:p-12 lg:p-16 border-b-4 lg:border-b-0 lg:border-r-4 border-zinc-950 flex flex-col justify-between">
+      <div class="scroll-reveal">
+         <span class="text-zinc-500 font-black tracking-widest text-xs uppercase block mb-3">EXIGÈNCIES VECINALS</span>
+         <h2 class="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-[0.9]">El Nostre Pla<br/><span class="text-red-600">d'Acció.</span></h2>
+         <p class="mt-8 text-xl font-medium text-zinc-800 leading-relaxed">
+           Actuem en tres fronts per assegurar que la veu dels veïns no pugui ser ignorada per l'Ajuntament de Tarragona.
+         </p>
+      </div>
+      <!-- Warning Tape Styling -->
+      <div class="hidden lg:block bg-yellow-400 border-2 border-zinc-950 p-4 text-zinc-950 font-black text-center text-sm uppercase tracking-widest shadow-[3px_3px_0px_0px_rgba(9,9,11,1)] mt-8">
+        /// CAUTION: VEÏNS EN LLUITA ///
+      </div>
+    </div>
+    
+    <div class="lg:col-span-7 flex flex-col">
+      <!-- Item 1 -->
+      <div class="p-8 md:p-12 lg:p-16 border-b-4 border-zinc-950 group hover:bg-zinc-950 hover:text-white transition-colors duration-300 cursor-default bg-white">
+         <div class="text-red-600 group-hover:text-yellow-400 font-black text-2xl tracking-widest mb-4">01 // DENÚNCIA</div>
+         <h3 class="text-3xl md:text-4xl font-black uppercase mb-4 tracking-tighter">Visibilitzar l'abandonament</h3>
+         <p class="text-lg md:text-xl font-medium text-zinc-700 group-hover:text-zinc-300 max-w-xl">
+           Reunim i documentem de forma sistemàtica les queixes dels veïns sobre l'estat de la neteja viària. Exposem la realitat dels nostres barris amb proves irrefutables.
+         </p>
+      </div>
+      <!-- Item 2 -->
+      <div class="p-8 md:p-12 lg:p-16 border-b-4 border-zinc-950 group hover:bg-zinc-950 hover:text-white transition-colors duration-300 cursor-default bg-white">
+         <div class="text-red-600 group-hover:text-yellow-400 font-black text-2xl tracking-widest mb-4">02 // MOBILITZACIÓ</div>
+         <h3 class="text-3xl md:text-4xl font-black uppercase mb-4 tracking-tighter">Prendre els carrers</h3>
+         <p class="text-lg md:text-xl font-medium text-zinc-700 group-hover:text-zinc-300 max-w-xl">
+           Organitzem concentracions, barricades simbòliques i protestes populars. Treballem braç a braç amb les federacions veïnals (FAVT). Si no ens escolten als despatxos, ens veuran als carrers.
+         </p>
+      </div>
+      <!-- Item 3 -->
+      <div class="p-8 md:p-12 lg:p-16 group hover:bg-zinc-950 hover:text-white transition-colors duration-300 cursor-default bg-white">
+         <div class="text-red-600 group-hover:text-yellow-400 font-black text-2xl tracking-widest mb-4">03 // ACCIÓ LEGAL</div>
+         <h3 class="text-3xl md:text-4xl font-black uppercase mb-4 tracking-tighter">Pressió institucional</h3>
+         <p class="text-lg md:text-xl font-medium text-zinc-700 group-hover:text-zinc-300 max-w-xl">
+           Convertim la indignació en expedients. Presentem informes tècnics amb milers de firmes i actes fotogràfiques davant el Síndic de Greuges i altres tribunals competents.
+         </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Què és la Plataforma / Promotors Section -->
+  <section id="plataforma" class="border-b-4 border-zinc-950 bg-zinc-100 py-16 px-6 md:px-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Description -->
+        <div class="lg:col-span-5">
+          <span class="text-red-600 font-black tracking-widest text-xs uppercase block mb-3">VEÏNS ORGANITZATS</span>
+          <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">
+            La Plataforma
+          </h2>
+          <p class="text-lg md:text-xl font-medium leading-relaxed text-zinc-800 mb-6">
+            La Plataforma per una Tarragona Neta sorgeix com a mitjà de denúncia ciutadana davant el problema de deixadesa, brutícia i insalubritat que patim els tarragonins. Instem l'Ajuntament a actuar i prendre les mesures oportunes per garantir-nos un entorn net i saludable.
+          </p>
+          <div class="space-y-3 border-l-4 border-zinc-950 pl-4 py-2 bg-zinc-200/50 p-4">
+            <h4 class="font-black uppercase text-xs tracking-wider text-zinc-900">Els Nostres Valors:</h4>
+            <p class="text-sm font-medium text-zinc-700">
+              Som transparents, de genuí interès ciutadà, pluralistes i incloents. Comptem amb una participació responsable, respectuosa amb les opinions dels altres, equitativa i flexible.
+            </p>
+            <p class="text-sm font-black text-red-600 uppercase tracking-tight pt-2 border-t border-zinc-300">
+              Objectiu principal: Tenir i poder viure en una ciutat saludable i neta.
+            </p>
+          </div>
+        </div>
+
+        <!-- Promoters List -->
+        <div class="lg:col-span-7 border-4 border-zinc-950 bg-zinc-950 text-white p-8 shadow-[8px_8px_0px_0px_rgba(9,9,11,1)]">
+          <span class="text-yellow-400 font-black tracking-widest text-xs uppercase block mb-4">PROMOTORS DE LA PLATAFORMA</span>
+          <h3 class="text-2xl md:text-3xl font-black uppercase tracking-tight mb-8">Veïns que fan un pas endavant</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Promoter Card 1 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-red-500 font-mono text-[10px] tracking-wider uppercase block">Coordinadora / Metgessa</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Monica Noves Nadal</span>
+            </div>
+            <!-- Promoter Card 2 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-zinc-500 font-mono text-[10px] tracking-wider uppercase block">Promotora Veïnal</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Silvia Vicente Gonzalez</span>
+            </div>
+            <!-- Promoter Card 3 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-zinc-500 font-mono text-[10px] tracking-wider uppercase block">Promotora Veïnal</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Conxi Parrilla Aixelà</span>
+            </div>
+            <!-- Promoter Card 4 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-zinc-500 font-mono text-[10px] tracking-wider uppercase block">Promotora Veïnal</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Antonela Bravo Pecino</span>
+            </div>
+            <!-- Promoter Card 5 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-zinc-500 font-mono text-[10px] tracking-wider uppercase block">Promotor Veïnal</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Juan Caballero Lopez</span>
+            </div>
+            <!-- Promoter Card 6 -->
+            <div class="border border-zinc-800 p-4 bg-zinc-900">
+              <span class="text-zinc-500 font-mono text-[10px] tracking-wider uppercase block">Promotor Veïnal</span>
+              <span class="text-base font-black uppercase text-white block mt-1">Eduard Manero Serrano</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Participació Ciutadana i Contacte Section -->
+  <section id="participar" class="grid grid-cols-1 lg:grid-cols-2 border-b-4 border-zinc-950 bg-zinc-950 text-white">
+    <div class="p-8 md:p-16 flex flex-col justify-center border-b-4 lg:border-b-0 lg:border-r-4 border-zinc-950">
+      <span class="text-yellow-400 font-black tracking-widest text-xs uppercase block mb-3">PARTICIPACIÓ ACTIVA</span>
+      <h2 class="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-none mb-6">
+        Fes Sentir la Teva Veu
+      </h2>
+      <p class="text-lg font-medium leading-relaxed text-zinc-400 mb-8 max-w-lg">
+        La Plataforma no és només una llista de noms; és un espai obert on qualsevol ciutadà compromès pot sumar-se per debatre, elevar propostes o formar part dels diferents grups de treball.
+      </p>
+      
+      <div class="border-2 border-zinc-800 p-6 bg-zinc-900 max-w-md">
+        <h4 class="font-black text-sm uppercase text-red-500 mb-2">Com participar-hi?</h4>
+        <p class="text-xs text-zinc-450 leading-relaxed uppercase font-mono">
+          /// Participa en fòrums, enquestes i debats<br/>
+          /// Eleva les teves propostes als grups de treball<br/>
+          /// Uneix-te a les nostres xarxes socials per seguir les accions
+        </p>
+      </div>
+    </div>
+
+    <!-- Socials and Contact links -->
+    <div class="p-8 md:p-16 flex flex-col justify-center bg-zinc-900 gap-8">
+      <div>
+        <span class="text-zinc-555 font-black tracking-widest text-xs uppercase block mb-4">CORREU DE CONTACTE</span>
+        <a 
+          href="mailto:plataformatarragonaneta@gmail.com" 
+          class="inline-block text-xl md:text-2xl font-black text-yellow-400 hover:text-white transition-colors underline underline-offset-4 decoration-2 decoration-yellow-400/30 hover:decoration-white"
+        >
+          plataformatarragonaneta@gmail.com
+        </a>
+      </div>
+
+      <div>
+        <span class="text-zinc-555 font-black tracking-widest text-xs uppercase block mb-6">XARXES SOCIALS</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <!-- Facebook -->
+          <a 
+            href="https://facebook.com" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 border-2 border-zinc-800 p-4 bg-zinc-950 hover:bg-zinc-900 hover:border-white transition-all group animate-none"
+          >
+            <div class="w-8 h-8 bg-zinc-905 border border-zinc-700 flex items-center justify-center font-black text-sm group-hover:bg-blue-600 transition-colors">
+              <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+                <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[9px] text-zinc-500 font-mono uppercase">Facebook</span>
+              <span class="text-xs font-black uppercase text-white block mt-0.5">Plataforma Tarragona Neta</span>
+            </div>
+          </a>
+          <!-- Twitter / X -->
+          <a 
+            href="https://x.com/Plat_TgnaNeta" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 border-2 border-zinc-800 p-4 bg-zinc-950 hover:bg-zinc-900 hover:border-white transition-all group animate-none"
+          >
+            <div class="w-8 h-8 bg-zinc-905 border border-zinc-700 flex items-center justify-center font-black text-sm group-hover:bg-zinc-800 transition-colors">
+              <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[9px] text-zinc-500 font-mono uppercase">X (Twitter)</span>
+              <span class="text-xs font-black text-white block mt-0.5">@Plat_TgnaNeta</span>
+            </div>
+          </a>
+          <!-- Tik Tok -->
+          <a 
+            href="https://tiktok.com/@plat.tarragonaneta" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 border-2 border-zinc-800 p-4 bg-zinc-950 hover:bg-zinc-900 hover:border-white transition-all group animate-none"
+          >
+            <div class="w-8 h-8 bg-zinc-905 border border-zinc-700 flex items-center justify-center font-black text-sm group-hover:bg-pink-600 transition-colors">
+              <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+                <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.02 1.76 4.07 1.42 1.25 3.32 1.78 5.17 1.87v3.91c-2.12-.07-4.19-.89-5.74-2.38v8.62c.07 1.83-.56 3.65-1.74 5.02-1.79 2.07-4.66 3.03-7.3 2.51-2.91-.53-5.36-2.85-5.91-5.78-.71-3.69 1.17-7.46 4.6-8.91.87-.37 1.82-.55 2.76-.55.02 1.26.01 2.53.02 3.79-.89-.02-1.81.2-2.57.69-1.28.84-1.92 2.45-1.63 3.97.35 1.93 2.11 3.35 4.07 3.23 2.12-.04 3.86-1.77 3.86-3.9v-15.5c-.01 0-.01-.01 0-.02z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[9px] text-zinc-500 font-mono uppercase">TikTok</span>
+              <span class="text-xs font-black uppercase text-white block mt-0.5">@plat.tarragonaneta</span>
+            </div>
+          </a>
+          <!-- Instagram -->
+          <a 
+            href="https://instagram.com/plataformatarragonaneta" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            class="flex items-center gap-3 border-2 border-zinc-800 p-4 bg-zinc-950 hover:bg-zinc-900 hover:border-white transition-all group animate-none"
+          >
+            <div class="w-8 h-8 bg-zinc-905 border border-zinc-700 flex items-center justify-center font-black text-sm group-hover:bg-purple-650 transition-colors">
+              <svg class="w-4 h-4 fill-current text-white" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </div>
+            <div>
+              <span class="block text-[9px] text-zinc-500 font-mono uppercase">Instagram</span>
+              <span class="text-xs font-black text-white block mt-0.5">plataformatarragonaneta</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Press Coverage Grid -->
+  <section class="bg-zinc-100 border-b-4 border-zinc-950 py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <span class="text-zinc-500 font-black tracking-widest text-xs uppercase block text-center mb-8">INPACT INSTITUCIONAL I PREMSA</span>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 items-center justify-items-center opacity-70">
+        <div class="border-2 border-zinc-950 p-4 font-black text-lg bg-white w-full text-center tracking-tighter uppercase">
+          Diari de Tarragona
+        </div>
+        <div class="border-2 border-zinc-950 p-4 font-black text-lg bg-white w-full text-center tracking-tighter uppercase">
+          Tarragona21
+        </div>
+        <div class="border-2 border-zinc-950 p-4 font-black text-lg bg-white w-full text-center tracking-tighter uppercase">
+          TAC12 TV
+        </div>
+        <div class="border-2 border-zinc-950 p-4 font-black text-lg bg-white w-full text-center tracking-tighter uppercase">
+          Tarragona Ràdio
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Manifesto (Signer Section) -->
+  <section id="signar" class="bg-red-600 text-white py-20 px-6 md:px-12 flex flex-col items-center text-center">
+    <div class="max-w-4xl">
+       <span class="bg-zinc-950 text-white text-xs font-black px-3 py-1.5 uppercase tracking-widest border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] mb-8 inline-block">
+         PETICIÓ ACTIVA DE SIGNATURES
+       </span>
+       <h2 class="text-5xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-6">
+         Tarragona no és un abocador.
+       </h2>
+       <p class="text-2xl md:text-3xl font-medium max-w-3xl mb-12 text-zinc-100">
+         Uneix-te a les més de 2.590 persones que ja han signat a Change.org per exigir a l'Ajuntament que garanteixi la neteja, seguretat i salut pública a la nostra ciutat.
+       </p>
+       
+       <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+         <a 
+           href="https://www.change.org/tarragonalimpia" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="inline-flex items-center justify-between bg-zinc-950 text-white px-8 py-5 text-lg font-black uppercase tracking-widest hover:bg-white hover:text-zinc-950 hover:border-zinc-950 border-4 border-zinc-950 shadow-[6px_6px_0px_0px_rgba(255,255,255,1)] active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_0px_rgba(255,255,255,1)] transition-colors"
+         >
+           <span>Signar a Change.org</span>
+           <svg class="ml-4 w-6 h-6" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+             <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+           </svg>
+         </a>
+       </div>
+    </div>
+  </section>
+</Layout>

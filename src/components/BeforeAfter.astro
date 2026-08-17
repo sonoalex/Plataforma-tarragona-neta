@@ -1,0 +1,114 @@
+---
+interface Props {
+  beforeImg: string;
+  afterImg: string;
+  beforeLabel: string;
+  afterLabel: string;
+}
+
+const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
+---
+
+<div class="before-after-container relative w-full h-[450px] md:h-[550px] border-4 border-zinc-950 bg-zinc-950 overflow-hidden select-none shadow-[8px_8px_0px_0px_rgba(9,9,11,1)] group" style="--slider-pos: 50%;">
+  
+  <!-- After image (base layer - clean/improved status) -->
+  <div class="absolute inset-0 w-full h-full">
+    <img 
+      src={afterImg} 
+      class="absolute inset-0 w-full h-full object-cover filter grayscale-30 brightness-110" 
+      draggable="false" 
+      alt={afterLabel} 
+    />
+    <div class="absolute top-4 right-4 bg-zinc-950 text-white px-3 py-1 font-black uppercase text-xs border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] z-10">
+      {afterLabel}
+    </div>
+  </div>
+
+  <!-- Before image (top clipped layer - filth reality) -->
+  <div 
+    class="absolute inset-0 w-full h-full overflow-hidden z-10"
+    style="clip-path: inset(0 calc(100% - var(--slider-pos)) 0 0);"
+    data-clipped-image
+  >
+    <img 
+      src={beforeImg} 
+      class="absolute inset-0 w-full h-full object-cover filter saturate-125" 
+      draggable="false" 
+      alt={beforeLabel} 
+    />
+    <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 font-black uppercase text-xs border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)]">
+      {beforeLabel}
+    </div>
+  </div>
+
+  <!-- Centered warning banner divider -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-yellow-400 text-zinc-950 border-2 border-zinc-950 py-1.5 px-4 font-black text-xs uppercase tracking-widest z-30 shadow-[3px_3px_0px_0px_rgba(9,9,11,1)] pointer-events-none flex items-center gap-2">
+    <span class="w-2.5 h-2.5 bg-zinc-950 rounded-full animate-ping"></span>
+    Arrossega per comparar
+  </div>
+
+  <!-- Custom Slider Divider Bar -->
+  <div 
+    class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize mix-blend-difference z-20 pointer-events-none"
+    style="left: var(--slider-pos);"
+    data-slider-bar
+  >
+    <!-- Handle -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-yellow-400 border-4 border-zinc-950 flex items-center justify-center shadow-[3px_3px_0px_0px_rgba(9,9,11,1)] pointer-events-none">
+      <div class="flex gap-0.5 text-zinc-950 font-black text-sm">
+        &lsaquo;&rsaquo;
+      </div>
+    </div>
+  </div>
+
+  <!-- Range Input Overlay (Invisible but draggable) -->
+  <input
+    type="range"
+    min="0"
+    max="100"
+    value="50"
+    class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0"
+    data-slider-input
+    aria-label="Comparar antes y después"
+  />
+</div>
+
+<style>
+  /* Remove default styling for inputs */
+  input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 40px;
+    height: 100%;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 40px;
+    height: 100%;
+  }
+</style>
+
+<script>
+  // Setup interactive slider updates
+  document.addEventListener('DOMContentLoaded', () => {
+    const containers = document.querySelectorAll('.before-after-container');
+    
+    containers.forEach(container => {
+      const input = container.querySelector('[data-slider-input]') as HTMLInputElement;
+      
+      if (input) {
+        const updateSliderPosition = () => {
+          const val = input.value;
+          (container as HTMLElement).style.setProperty('--slider-pos', `${val}%`);
+        };
+
+        // Listen to both input and change events for cross-browser responsiveness
+        input.addEventListener('input', updateSliderPosition);
+        input.addEventListener('change', updateSliderPosition);
+      }
+    });
+  });
+</script>
