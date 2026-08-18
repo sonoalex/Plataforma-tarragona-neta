@@ -9,7 +9,7 @@ interface Props {
 const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
 ---
 
-<div class="before-after-container relative w-full h-[450px] md:h-[550px] border-4 border-zinc-950 bg-zinc-950 overflow-hidden select-none shadow-[8px_8px_0px_0px_rgba(9,9,11,1)] group" style="--slider-pos: 50%;">
+<div data-lenis-prevent class="before-after-container relative w-full h-[450px] md:h-[550px] border-4 border-zinc-950 bg-zinc-950 overflow-hidden select-none shadow-[8px_8px_0px_0px_rgba(9,9,11,1)] group" style="--slider-pos: 50%;">
   
   <!-- After image (base layer - clean/improved status) -->
   <div class="absolute inset-0 w-full h-full">
@@ -67,13 +67,16 @@ const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
     min="0"
     max="100"
     value="50"
-    class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0 p-0"
+    class="absolute inset-0 w-full h-full opacity-0 pointer-events-none z-30 m-0 p-0"
     data-slider-input
     aria-label="Comparar antes y después"
   />
 </div>
 
 <style>
+  .before-after-container {
+    touch-action: none;
+  }
   /* Remove default styling for inputs */
   input[type="range"] {
     -webkit-appearance: none;
@@ -92,23 +95,48 @@ const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
 </style>
 
 <script>
-  // Setup interactive slider updates
+  // Setup interactive slider updates using Pointer Events for full mobile support
   document.addEventListener('DOMContentLoaded', () => {
     const containers = document.querySelectorAll('.before-after-container');
     
     containers.forEach(container => {
+      const htmlContainer = container as HTMLElement;
       const input = container.querySelector('[data-slider-input]') as HTMLInputElement;
-      
-      if (input) {
-        const updateSliderPosition = () => {
-          const val = input.value;
-          (container as HTMLElement).style.setProperty('--slider-pos', `${val}%`);
-        };
+      let isDragging = false;
 
-        // Listen to both input and change events for cross-browser responsiveness
-        input.addEventListener('input', updateSliderPosition);
-        input.addEventListener('change', updateSliderPosition);
-      }
+      const updatePosition = (clientX: number) => {
+        const rect = htmlContainer.getBoundingClientRect();
+        const x = clientX - rect.left;
+        const percentage = Math.max(0, Math.min(100, (x / rect.width) * 100));
+        htmlContainer.style.setProperty('--slider-pos', `${percentage}%`);
+        
+        if (input) {
+          input.value = Math.round(percentage).toString();
+        }
+      };
+
+      htmlContainer.addEventListener('pointerdown', (e: PointerEvent) => {
+        // Only trigger on primary click/touch
+        if (e.button !== 0 && e.pointerType === 'mouse') return;
+        
+        isDragging = true;
+        htmlContainer.setPointerCapture(e.pointerId);
+        updatePosition(e.clientX);
+      });
+
+      htmlContainer.addEventListener('pointermove', (e: PointerEvent) => {
+        if (!isDragging) return;
+        updatePosition(e.clientX);
+      });
+
+      const stopDragging = (e: PointerEvent) => {
+        if (!isDragging) return;
+        isDragging = false;
+        htmlContainer.releasePointerCapture(e.pointerId);
+      };
+
+      htmlContainer.addEventListener('pointerup', stopDragging);
+      htmlContainer.addEventListener('pointercancel', stopDragging);
     });
   });
 </script>
