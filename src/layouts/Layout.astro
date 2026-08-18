@@ -1,5 +1,6 @@
 ---
 import '../index.css';
+import logoImg from '../../assets/logo.jpg';
 
 interface Props {
   title: string;
@@ -16,7 +17,11 @@ const t = {
     footerTagline: "Per una ciutat digna per als seus veïns.",
     legal: "Avís Legal",
     contact: "Contacte",
-    brand: "Tarragona Neta"
+    brand: "Tarragona Neta",
+    navPlan: "El Pla",
+    navPlatform: "La Plataforma",
+    navParticipate: "Participa",
+    navSign: "Signar"
   },
   es: {
     headerBadge: "Plataforma Vecinal",
@@ -24,7 +29,11 @@ const t = {
     footerTagline: "Por una ciudad digna para sus vecinos.",
     legal: "Aviso Legal",
     contact: "Contacto",
-    brand: "Tarragona Neta"
+    brand: "Tarragona Neta",
+    navPlan: "El Plan",
+    navPlatform: "La Plataforma",
+    navParticipate: "Participa",
+    navSign: "Firmar"
   }
 }[lang];
 ---
@@ -96,16 +105,41 @@ const t = {
         outline: 4px solid #dc2626 !important;
         outline-offset: 2px !important;
       }
+
+      /* Active Navigation Link styling */
+      nav a.active {
+        color: #dc2626 !important;
+        text-decoration-color: #dc2626 !important;
+      }
+      
+      /* Mobile Menu open/close transition */
+      #mobile-menu.open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
     </style>
   </head>
   <body class="min-h-screen bg-zinc-100 text-zinc-950 selection:bg-red-600 selection:text-white overflow-x-hidden">
     
     <!-- Header -->
     <header class="border-b-4 border-zinc-950 px-4 md:px-8 py-4 flex justify-between items-center uppercase font-black tracking-wider text-sm sticky top-0 bg-zinc-100 z-50 h-[72px]">
-      <a href={lang === 'ca' ? '/' : '/es'} class="flex items-center gap-2 hover:text-red-600 transition-colors">
-        <span class="text-xl font-extrabold tracking-tighter">{t.brand}</span>
+      <a href={lang === 'ca' ? '/' : '/es'} class="flex items-center hover:opacity-80 transition-opacity">
+        <img 
+          src={logoImg.src} 
+          alt={t.brand} 
+          class="h-12 w-auto object-contain border-2 border-zinc-950 shadow-[3px_3px_0px_0px_rgba(9,9,11,1)]" 
+        />
       </a>
       
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden lg:flex items-center gap-8 font-black uppercase text-xs tracking-widest text-zinc-950">
+        <a href="#plan" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlan}</a>
+        <a href="#plataforma" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlatform}</a>
+        <a href="#participar" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navParticipate}</a>
+        <a href="#signar" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navSign}</a>
+      </nav>
+
       <div class="flex items-center gap-3">
          <span class="hidden sm:inline-block bg-red-600 text-white px-3 py-1 font-bold text-xs mr-3 border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)]">
            {t.headerBadge}
@@ -125,8 +159,35 @@ const t = {
              ESP
            </a>
          </div>
-      </div>
+
+          <!-- Mobile Menu Button -->
+          <button 
+            id="menu-toggle" 
+            class="lg:hidden p-1.5 border-2 border-zinc-950 bg-white hover:bg-zinc-200 text-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)] active:translate-x-0.5 active:translate-y-0.5 active:shadow-[1px_1px_0px_0px_rgba(9,9,11,1)] cursor-pointer flex items-center justify-center"
+            aria-label="Menu"
+          >
+            <!-- Hamburger Icon -->
+            <svg id="hamburger-icon" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <!-- Close Icon (Hidden by default) -->
+            <svg id="close-icon" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="3" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+       </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div 
+      id="mobile-menu" 
+      class="fixed inset-x-0 top-[-300px] bg-zinc-100 border-b-4 border-zinc-950 p-6 flex flex-col gap-4 uppercase font-black tracking-wider text-sm transition-all duration-300 z-40 lg:hidden shadow-[0_10px_20px_rgba(0,0,0,0.15)] opacity-0 pointer-events-none"
+    >
+      <a href="#plan" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlan}</a>
+      <a href="#plataforma" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlatform}</a>
+      <a href="#participar" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navParticipate}</a>
+      <a href="#signar" class="mobile-nav-link py-3 hover:text-red-600 transition-colors">{t.navSign}</a>
+    </div>
 
     <!-- Main Content Slot -->
     <main>
@@ -137,7 +198,11 @@ const t = {
     <footer class="bg-zinc-950 text-zinc-50 px-6 md:px-12 py-16 flex flex-col gap-12 font-bold uppercase tracking-widest text-xs border-t-4 border-zinc-950">
       <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
         <div>
-          <p class="text-lg font-black tracking-tight text-white mb-2">{t.brand}</p>
+          <img 
+            src={logoImg.src} 
+            alt={t.brand} 
+            class="h-16 w-auto object-contain border-2 border-white shadow-[3px_3px_0px_0px_rgba(255,255,255,1)] mb-4" 
+          />
           <p class="text-zinc-400">© {new Date().getFullYear()} {t.footerRights}</p>
           <p class="text-zinc-500 mt-1 font-medium">{t.footerTagline}</p>
         </div>
@@ -262,6 +327,95 @@ const t = {
             delay: 0.3
           });
         }
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        if (menuToggle && mobileMenu) {
+          menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            if (isOpen) {
+              mobileMenu.classList.remove('top-[-300px]', 'opacity-0', 'pointer-events-none');
+              mobileMenu.classList.add('top-[72px]', 'opacity-100', 'pointer-events-auto');
+              hamburgerIcon?.classList.add('hidden');
+              closeIcon?.classList.remove('hidden');
+            } else {
+              mobileMenu.classList.add('top-[-300px]', 'opacity-0', 'pointer-events-none');
+              mobileMenu.classList.remove('top-[72px]', 'opacity-100', 'pointer-events-auto');
+              hamburgerIcon?.classList.remove('hidden');
+              closeIcon?.classList.add('hidden');
+            }
+          });
+
+          // Close mobile menu on link click
+          mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+              mobileMenu.classList.remove('open');
+              mobileMenu.classList.add('top-[-300px]', 'opacity-0', 'pointer-events-none');
+              mobileMenu.classList.remove('top-[72px]', 'opacity-100', 'pointer-events-auto');
+              hamburgerIcon?.classList.remove('hidden');
+              closeIcon?.classList.add('hidden');
+            });
+          });
+        }
+
+        // Scroll Spy / Active Links Highlighter
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('nav a');
+        
+        const scrollSpyOptions = {
+          root: null,
+          rootMargin: '-20% 0px -60% 0px',
+          threshold: 0
+        };
+
+        const scrollSpyCallback = (entries: any[]) => {
+          entries.forEach((entry: any) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.getAttribute('id');
+              
+              // Desktop active styling
+              navLinks.forEach((link: any) => {
+                if (link.getAttribute('href') === `#${id}`) {
+                  link.classList.add('active');
+                } else {
+                  link.classList.remove('active');
+                }
+              });
+
+              // Mobile active styling
+              mobileNavLinks.forEach((link: any) => {
+                if (link.getAttribute('href') === `#${id}`) {
+                  link.classList.add('text-red-600');
+                } else {
+                  link.classList.remove('text-red-600');
+                }
+              });
+            }
+          });
+        };
+
+        if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+          const observer = new IntersectionObserver(scrollSpyCallback, scrollSpyOptions);
+          sections.forEach(section => observer.observe(section));
+        }
+
+        // Intercept hash links for smooth scroll with header offset
+        document.querySelectorAll('a[href^="#"]').forEach((anchor: any) => {
+          anchor.addEventListener('click', (e: Event) => {
+            const href = anchor.getAttribute('href');
+            if (href === '#' || !href) return;
+            
+            const target = document.getElementById(href.substring(1));
+            if (target && window.lenis) {
+              e.preventDefault();
+              window.lenis.scrollTo(target, { offset: -72 });
+            }
+          });
+        });
       });
     </script>
   </body>
