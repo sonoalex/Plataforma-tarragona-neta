@@ -1,6 +1,7 @@
 ---
 import '../index.css';
 import logoImg from '../../assets/logo.jpg';
+import Analytics from '@vercel/analytics/astro';
 
 interface Props {
   title: string;
@@ -42,6 +43,7 @@ const t = {
 <html lang={lang} class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
+    <Analytics />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
