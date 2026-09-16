@@ -433,11 +433,19 @@ const t = {
               const target = document.getElementById(targetId);
               if (target) {
                 e.preventDefault();
+                
+                // Calculate exact target position considering GSAP pinned spacers
+                const tempTrigger = ScrollTrigger.create({
+                  trigger: target,
+                  start: "top 72px",
+                });
+                const targetPos = tempTrigger.start;
+                tempTrigger.kill();
+
                 if (window.lenis) {
-                  window.lenis.scrollTo(target, { offset: -72, duration: 1.2 });
+                  window.lenis.scrollTo(targetPos, { duration: 1.2 });
                 } else {
-                  const targetTop = target.getBoundingClientRect().top + window.scrollY - 72;
-                  window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                  window.scrollTo({ top: targetPos, behavior: 'smooth' });
                 }
                 history.pushState(null, '', url.hash);
               }
