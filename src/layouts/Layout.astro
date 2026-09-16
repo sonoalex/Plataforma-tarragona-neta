@@ -143,10 +143,10 @@ const t = {
       
       <!-- Desktop Navigation Links -->
       <nav class="hidden lg:flex items-center gap-8 font-black uppercase text-xs tracking-widest text-zinc-950">
-        <a href="#plan" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlan}</a>
-        <a href="#plataforma" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlatform}</a>
-        <a href="#participar" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navParticipate}</a>
-        <a href="#signar" class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navSign}</a>
+        <a href={lang === 'ca' ? '/#plan' : '/es#plan'} class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlan}</a>
+        <a href={lang === 'ca' ? '/#plataforma' : '/es#plataforma'} class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navPlatform}</a>
+        <a href={lang === 'ca' ? '/#participar' : '/es#participar'} class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navParticipate}</a>
+        <a href={lang === 'ca' ? '/#signar' : '/es#signar'} class="hover:text-red-600 transition-colors underline underline-offset-4 decoration-2 decoration-transparent hover:decoration-red-600">{t.navSign}</a>
       </nav>
 
       <div class="flex items-center gap-3">
@@ -192,10 +192,10 @@ const t = {
       id="mobile-menu" 
       class="fixed inset-x-0 top-[-300px] bg-zinc-100 border-b-4 border-zinc-950 p-6 flex flex-col gap-4 uppercase font-black tracking-wider text-sm transition-all duration-300 z-40 lg:hidden shadow-[0_10px_20px_rgba(0,0,0,0.15)] opacity-0 pointer-events-none"
     >
-      <a href="#plan" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlan}</a>
-      <a href="#plataforma" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlatform}</a>
-      <a href="#participar" class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navParticipate}</a>
-      <a href="#signar" class="mobile-nav-link py-3 hover:text-red-600 transition-colors">{t.navSign}</a>
+      <a href={lang === 'ca' ? '/#plan' : '/es#plan'} class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlan}</a>
+      <a href={lang === 'ca' ? '/#plataforma' : '/es#plataforma'} class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navPlatform}</a>
+      <a href={lang === 'ca' ? '/#participar' : '/es#participar'} class="mobile-nav-link py-3 border-b-2 border-zinc-200 hover:text-red-600 transition-colors">{t.navParticipate}</a>
+      <a href={lang === 'ca' ? '/#signar' : '/es#signar'} class="mobile-nav-link py-3 hover:text-red-600 transition-colors">{t.navSign}</a>
     </div>
 
     <!-- Main Content Slot -->
@@ -217,7 +217,7 @@ const t = {
         </div>
         <div class="flex flex-wrap gap-6 sm:gap-10">
           <a href={t.legalHref} class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.legal}</a>
-          <a href="#contacte" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.contact}</a>
+          <a href={lang === 'ca' ? '/#participar' : '/es#participar'} class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.contact}</a>
         </div>
       </div>
       <div class="pt-8 border-t-2 border-zinc-900 text-zinc-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
