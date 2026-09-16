@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
-  beforeImg: string;
-  afterImg: string;
+  beforeImg: any;
+  afterImg: any;
   beforeLabel: string;
   afterLabel: string;
 }
@@ -13,12 +15,21 @@ const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
   
   <!-- After image (base layer - clean/improved status) -->
   <div class="absolute inset-0 w-full h-full">
-    <img 
-      src={afterImg} 
-      class="absolute inset-0 w-full h-full object-cover filter grayscale-30 brightness-110" 
-      draggable="false" 
-      alt={afterLabel} 
-    />
+    {typeof afterImg === 'string' ? (
+      <img 
+        src={afterImg} 
+        class="absolute inset-0 w-full h-full object-cover filter grayscale-30 brightness-110" 
+        draggable="false" 
+        alt={afterLabel} 
+      />
+    ) : (
+      <Image 
+        src={afterImg} 
+        class="absolute inset-0 w-full h-full object-cover filter grayscale-30 brightness-110" 
+        draggable="false" 
+        alt={afterLabel} 
+      />
+    )}
     <div class="absolute top-4 right-4 bg-zinc-950 text-white px-3 py-1 font-black uppercase text-xs border-2 border-white shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] z-10">
       {afterLabel}
     </div>
@@ -30,12 +41,21 @@ const { beforeImg, afterImg, beforeLabel, afterLabel } = Astro.props;
     style="clip-path: inset(0 calc(100% - var(--slider-pos)) 0 0);"
     data-clipped-image
   >
-    <img 
-      src={beforeImg} 
-      class="absolute inset-0 w-full h-full object-cover filter saturate-125" 
-      draggable="false" 
-      alt={beforeLabel} 
-    />
+    {typeof beforeImg === 'string' ? (
+      <img 
+        src={beforeImg} 
+        class="absolute inset-0 w-full h-full object-cover filter saturate-125" 
+        draggable="false" 
+        alt={beforeLabel} 
+      />
+    ) : (
+      <Image 
+        src={beforeImg} 
+        class="absolute inset-0 w-full h-full object-cover filter saturate-125" 
+        draggable="false" 
+        alt={beforeLabel} 
+      />
+    )}
     <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 font-black uppercase text-xs border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)]">
       {beforeLabel}
     </div>
