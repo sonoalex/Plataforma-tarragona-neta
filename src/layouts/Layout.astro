@@ -18,6 +18,7 @@ const t = {
     footerRights: "Plataforma per una Tarragona Neta.",
     footerTagline: "Per una ciutat digna per als seus veïns.",
     legal: "Avís Legal",
+    legalHref: "/avis-legal",
     contact: "Contacte",
     brand: "Tarragona Neta",
     navPlan: "El Pla",
@@ -31,6 +32,7 @@ const t = {
     footerRights: "Plataforma per una Tarragona Neta.",
     footerTagline: "Por una ciudad digna para sus vecinos.",
     legal: "Aviso Legal",
+    legalHref: "/es/aviso-legal",
     contact: "Contacto",
     brand: "Tarragona Neta",
     navPlan: "El Plan",
@@ -214,8 +216,8 @@ const t = {
           <p class="text-zinc-500 mt-1 font-medium">{t.footerTagline}</p>
         </div>
         <div class="flex flex-wrap gap-6 sm:gap-10">
-          <a href="#" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.legal}</a>
-          <a href="#" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.contact}</a>
+          <a href={t.legalHref} class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.legal}</a>
+          <a href="#contacte" class="hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">{t.contact}</a>
         </div>
       </div>
       <div class="pt-8 border-t-2 border-zinc-900 text-zinc-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
