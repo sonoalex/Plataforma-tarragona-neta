@@ -71,6 +71,10 @@ const t = {
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;800;900&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
     
     <style is:global>
+      html {
+        scroll-padding-top: 72px;
+      }
+
       /* Custom typography classes using Google Fonts */
       body {
         font-family: 'Work Sans', sans-serif;
@@ -388,7 +392,8 @@ const t = {
               
               // Desktop active styling
               navLinks.forEach((link: any) => {
-                if (link.getAttribute('href') === `#${id}`) {
+                const href = link.getAttribute('href') || '';
+                if (href === `#${id}` || href.endsWith(`/#${id}`) || href.endsWith(`#${id}`)) {
                   link.classList.add('active');
                 } else {
                   link.classList.remove('active');
@@ -397,7 +402,8 @@ const t = {
 
               // Mobile active styling
               mobileNavLinks.forEach((link: any) => {
-                if (link.getAttribute('href') === `#${id}`) {
+                const href = link.getAttribute('href') || '';
+                if (href === `#${id}` || href.endsWith(`/#${id}`) || href.endsWith(`#${id}`)) {
                   link.classList.add('text-red-600');
                 } else {
                   link.classList.remove('text-red-600');
@@ -412,18 +418,33 @@ const t = {
           sections.forEach(section => observer.observe(section));
         }
 
-        // Intercept hash links for smooth scroll with header offset
-        document.querySelectorAll('a[href^="#"]').forEach((anchor: any) => {
-          anchor.addEventListener('click', (e: Event) => {
-            const href = anchor.getAttribute('href');
-            if (href === '#' || !href) return;
-            
-            const target = document.getElementById(href.substring(1));
-            if (target && window.lenis) {
-              e.preventDefault();
-              window.lenis.scrollTo(target, { offset: -72 });
+        // Intercept all in-page hash links for accurate smooth scroll with header offset
+        document.addEventListener('click', (e: MouseEvent) => {
+          const anchor = (e.target as HTMLElement).closest('a');
+          if (!anchor) return;
+          
+          const href = anchor.getAttribute('href');
+          if (!href || href === '#') return;
+
+          try {
+            const url = new URL(anchor.href, window.location.href);
+            if (url.pathname === window.location.pathname && url.hash) {
+              const targetId = url.hash.substring(1);
+              const target = document.getElementById(targetId);
+              if (target) {
+                e.preventDefault();
+                if (window.lenis) {
+                  window.lenis.scrollTo(target, { offset: -72, duration: 1.2 });
+                } else {
+                  const targetTop = target.getBoundingClientRect().top + window.scrollY - 72;
+                  window.scrollTo({ top: targetTop, behavior: 'smooth' });
+                }
+                history.pushState(null, '', url.hash);
+              }
             }
-          });
+          } catch (err) {
+            // ignore non-standard urls
+          }
         });
       });
     </script>
