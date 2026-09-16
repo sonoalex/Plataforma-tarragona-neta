@@ -1,7 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import BeforeAfter from '../components/BeforeAfter.astro';
+import ConcentracioModal from '../components/ConcentracioModal.astro';
 import heroImg from '../../assets/hero-image.jpeg';
+import imgContenidorsDesbordats from '../../assets/contenidors-desbordats.webp';
+import imgDenunciaContenidors from '../../assets/denuncia-contenidors-part-alta.jpg';
+import imgDenunciaMobles from '../../assets/mobiliari-abocat.jpeg';
+import imgDenunciaRuna from '../../assets/denuncia-runa-escombros.jpg';
+import imgDenunciaFont from '../../assets/denuncia-font-degradada.jpeg';
+import imgDenunciaResidus from '../../assets/denuncia-carrer-residus.jpg';
 ---
 
 <Layout 
@@ -9,6 +15,9 @@ import heroImg from '../../assets/hero-image.jpeg';
   description="Plataforma ciutadana i veïnal per denunciar la brutícia urbana, l'acumulació incontrolada de residus i la insalubritat als carrers de Tarragona."
   lang="ca"
 >
+  <!-- Modal Convocatòria Concentració -->
+  <ConcentracioModal lang="ca" />
+
   <!-- Hero Section -->
   <section class="grid grid-cols-1 lg:grid-cols-12 min-h-[90vh] border-b-4 border-zinc-950 bg-zinc-100">
     <!-- Left Hero Content -->
@@ -107,7 +116,7 @@ import heroImg from '../../assets/hero-image.jpeg';
       <div class="gallery-item w-screen h-full px-4 md:px-12 flex items-center justify-center shrink-0">
         <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-4 md:gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-4 sm:p-6 md:p-10 relative">
           <div class="md:col-span-7 h-[160px] sm:h-[220px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Contenedores desbordados" />
+            <img src={imgDenunciaContenidors.src} class="w-full h-full object-cover filter grayscale contrast-125" alt="Contenidors desbordats a la Part Alta" />
             <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
           </div>
           <div class="md:col-span-5 flex flex-col justify-between py-1">
@@ -119,7 +128,7 @@ import heroImg from '../../assets/hero-image.jpeg';
               </p>
             </div>
             <div class="mt-4 pt-4 md:mt-6 md:pt-6 border-t border-zinc-800 flex justify-between items-center text-xs font-mono">
-              <span class="text-yellow-400">Torreforta // C. Riu Clar</span>
+              <span class="text-yellow-400">Part Alta // Casc Antic</span>
               <span class="text-zinc-500">12 Octubre</span>
             </div>
           </div>
@@ -130,19 +139,19 @@ import heroImg from '../../assets/hero-image.jpeg';
       <div class="gallery-item w-screen h-full px-4 md:px-12 flex items-center justify-center shrink-0">
         <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-4 md:gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-4 sm:p-6 md:p-10 relative">
           <div class="md:col-span-7 h-[160px] sm:h-[220px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1611284446314-60a58ac0deb9?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Mobiliario destruido" />
+            <img src={imgDenunciaMobles.src} class="w-full h-full object-cover filter grayscale contrast-125" alt="Mobiliari i trastos abandonats" />
             <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
           </div>
           <div class="md:col-span-5 flex flex-col justify-between py-1">
             <div>
               <span class="bg-red-600 text-zinc-950 font-black text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 uppercase tracking-wider inline-block mb-3 sm:mb-4">INFORME #089</span>
-              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Mobiliari Destruït</h3>
+              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Trastos i Mobles Vells</h3>
               <p class="text-zinc-400 text-xs sm:text-base md:text-lg leading-relaxed">
-                Parcs infantils plens de brossa, bancs trencats i contenidors cremats sense que l'Ajuntament reposi els materials ni netegi la zona.
+                Matalassos, somiers i mobles vells bloquejant les voreres i passos de vianants durant setmanes sense resposta dels serveis municipals.
               </p>
             </div>
             <div class="mt-4 pt-4 md:mt-6 md:pt-6 border-t border-zinc-800 flex justify-between items-center text-xs font-mono">
-              <span class="text-yellow-400">Campclar // Riu Glorieta</span>
+              <span class="text-yellow-400">Torreforta // C. Riu Clar</span>
               <span class="text-zinc-500">15 Octubre</span>
             </div>
           </div>
@@ -153,19 +162,19 @@ import heroImg from '../../assets/hero-image.jpeg';
       <div class="gallery-item w-screen h-full px-4 md:px-12 flex items-center justify-center shrink-0">
         <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-4 md:gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-4 sm:p-6 md:p-10 relative">
           <div class="md:col-span-7 h-[160px] sm:h-[220px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Abandono total" />
+            <img src={imgDenunciaRuna.src} class="w-full h-full object-cover filter grayscale contrast-125" alt="Runes d'obra abandonades" />
             <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
           </div>
           <div class="md:col-span-5 flex flex-col justify-between py-1">
             <div>
               <span class="bg-red-600 text-zinc-950 font-black text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 uppercase tracking-wider inline-block mb-3 sm:mb-4">INFORME #104</span>
-              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Abandonament Històric</h3>
+              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Abocament de Runes</h3>
               <p class="text-zinc-400 text-xs sm:text-base md:text-lg leading-relaxed">
-                Els carrers de la Part Alta pateixen taques de greix permanents, acumulació de caixes de negocis i brutícia acumulada a les cantonades medievals.
+                Caixes amb rajoles trencades, enderrocs i materials d'obra dipositats a la via pública creant perill per als vianants.
               </p>
             </div>
             <div class="mt-4 pt-4 md:mt-6 md:pt-6 border-t border-zinc-800 flex justify-between items-center text-xs font-mono">
-              <span class="text-yellow-400">Part Alta // Pl. de la Font</span>
+              <span class="text-yellow-400">Campclar // Rambla Ponent</span>
               <span class="text-zinc-500">18 Octubre</span>
             </div>
           </div>
@@ -176,19 +185,19 @@ import heroImg from '../../assets/hero-image.jpeg';
       <div class="gallery-item w-screen h-full px-4 md:px-12 flex items-center justify-center shrink-0">
         <div class="grid grid-cols-1 md:grid-cols-12 w-full max-w-6xl gap-4 md:gap-6 border-4 border-zinc-800 bg-zinc-900/60 p-4 sm:p-6 md:p-10 relative">
           <div class="md:col-span-7 h-[160px] sm:h-[220px] md:h-[400px] bg-zinc-800 relative overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1589839958933-28f09b5ee948?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover filter grayscale contrast-125" alt="Incivisme descontrolado" />
+            <img src={imgDenunciaFont.src} class="w-full h-full object-cover filter grayscale contrast-125" alt="Degradació de fonts públiques" />
             <div class="absolute inset-0 bg-red-600 mix-blend-multiply opacity-10"></div>
           </div>
           <div class="md:col-span-5 flex flex-col justify-between py-1">
             <div>
               <span class="bg-red-600 text-zinc-950 font-black text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 uppercase tracking-wider inline-block mb-3 sm:mb-4">INFORME #121</span>
-              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Abocaments Il·legals</h3>
+              <h3 class="text-xl sm:text-2xl md:text-5xl font-black uppercase leading-none mb-2 sm:mb-4">Degradació Mobiliari Urbà</h3>
               <p class="text-zinc-400 text-xs sm:text-base md:text-lg leading-relaxed">
-                A les zones de Llevant es produeixen abocaments de runes, pneumàtics i electrodomèstics de forma il·legal sense cap tipus de vigilància ni sanció.
+                Fonts públiques d'aigua potable completament oxidades, bancs trencats i instal·lacions urbanes sense manteniment ni salubritat als espais públics.
               </p>
             </div>
             <div class="mt-4 pt-4 md:mt-6 md:pt-6 border-t border-zinc-800 flex justify-between items-center text-xs font-mono">
-              <span class="text-yellow-400">Llevant // Camí de ronda</span>
+              <span class="text-yellow-400">Parcs i Espais Públics</span>
               <span class="text-zinc-500">22 Octubre</span>
             </div>
           </div>
@@ -312,12 +321,20 @@ import heroImg from '../../assets/hero-image.jpeg';
       </div>
     </div>
     <div class="p-6 md:p-12 flex flex-col items-center justify-center bg-zinc-900">
-      <BeforeAfter 
-        beforeImg="https://images.unsplash.com/photo-1605600659908-0ef719419d41?auto=format&fit=crop&q=80&w=1200"
-        afterImg="https://images.unsplash.com/photo-1476483543940-9a2ebfdf1095?auto=format&fit=crop&q=80&w=1200"
-        beforeLabel="Abans (Realitat)"
-        afterLabel="Després (Exigència)"
-      />
+      <div class="relative w-full h-[450px] md:h-[520px] border-4 border-zinc-950 bg-zinc-950 overflow-hidden shadow-[8px_8px_0px_0px_rgba(220,38,38,1)] group">
+        <img 
+          src={imgContenidorsDesbordats.src} 
+          class="w-full h-full object-cover filter contrast-110 brightness-95 group-hover:scale-105 transition-transform duration-500" 
+          alt="Contenidors desbordats a Tarragona durant la nit"
+        />
+        <div class="absolute top-4 left-4 bg-red-600 text-white px-3 py-1 font-black uppercase text-xs border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)]">
+          REALITAT DOCUMENTADA
+        </div>
+        <div class="absolute bottom-4 left-4 right-4 bg-zinc-950/90 backdrop-blur-sm p-4 border-2 border-zinc-700 text-xs font-mono text-zinc-300 flex flex-col sm:flex-row justify-between sm:items-center gap-2">
+          <span class="text-yellow-400 font-bold uppercase">Col·lapse de residus nocturn</span>
+          <span class="text-zinc-400">Punts negres de recollida a Tarragona</span>
+        </div>
+      </div>
     </div>
   </section>
 

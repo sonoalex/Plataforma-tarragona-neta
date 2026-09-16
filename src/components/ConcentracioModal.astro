@@ -1,0 +1,218 @@
+---
+interface Props {
+  lang?: 'ca' | 'es';
+}
+
+const { lang = 'ca' } = Astro.props;
+
+const content = {
+  ca: {
+    badge: "CONVOCATÒRIA URGENT",
+    title: "Nova Concentració Ciutadana",
+    subtitle: "Prou excuses, volem una ciutat neta i digna!",
+    dateLabel: "DATA",
+    dateVal: "Divendres, 18 de Setembre de 2026",
+    timeLabel: "HORA",
+    timeVal: "08:30h a 09:30h",
+    locationLabel: "LLOC",
+    locationVal: "Diputació de Tarragona",
+    addressVal: "Passeig de Sant Antoni, 100",
+    desc: "Fem sentir la nostra veu. Convoquem a tots els veïns i veïnes a concentrar-nos a les portes de la Diputació per exigir solucions immediates al col·lapse dels serveis de neteja.",
+    confirmBtn: "M'hi sumo / Entès",
+    closeBtn: "Tancar"
+  },
+  es: {
+    badge: "CONVOCATORIA URGENTE",
+    title: "Nueva Concentración Ciudadana",
+    subtitle: "¡Basta de excusas, queremos una ciudad limpia y digna!",
+    dateLabel: "FECHA",
+    dateVal: "Viernes, 18 de Septiembre de 2026",
+    timeLabel: "HORARIO",
+    timeVal: "08:30h a 09:30h",
+    locationLabel: "LUGAR",
+    locationVal: "Diputación de Tarragona",
+    addressVal: "Passeig de Sant Antoni, 100",
+    desc: "Hagamos oír nuestra voz. Convocamos a todos los vecinos y vecinas a concentrarnos a las puertas de la Diputación para exigir soluciones inmediatas al colapso de los servicios de limpieza.",
+    confirmBtn: "Me sumo / Entendido",
+    closeBtn: "Cerrar"
+  }
+}[lang];
+---
+
+<!-- Modal Overlay -->
+<div 
+  id="announcement-modal" 
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 bg-zinc-950/80 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+>
+  <!-- Modal Card -->
+  <div 
+    id="modal-card" 
+    class="relative w-full max-w-2xl bg-zinc-100 border-4 border-zinc-950 text-zinc-950 shadow-[10px_10px_0px_0px_rgba(220,38,38,1)] transform scale-95 transition-transform duration-300 max-h-[90vh] overflow-y-auto"
+  >
+    <!-- Top Alert Bar -->
+    <div class="bg-red-600 text-white px-6 py-3 border-b-4 border-zinc-950 flex items-center justify-between font-black uppercase text-xs sm:text-sm tracking-wider">
+      <div class="flex items-center gap-2">
+        <span class="w-3 h-3 bg-yellow-400 rounded-full animate-ping"></span>
+        <span>{content.badge}</span>
+      </div>
+      <!-- Close Button X -->
+      <button 
+        type="button"
+        class="modal-close text-white hover:text-zinc-950 hover:bg-yellow-400 p-1 border-2 border-transparent hover:border-zinc-950 transition-colors cursor-pointer"
+        aria-label={content.closeBtn}
+      >
+        <svg class="w-6 h-6 stroke-[3]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Body -->
+    <div class="p-6 sm:p-8 space-y-6">
+      <div>
+        <span class="inline-block bg-yellow-400 text-zinc-950 font-black uppercase text-xs tracking-widest px-3 py-1 border-2 border-zinc-950 shadow-[2px_2px_0px_0px_rgba(9,9,11,1)] mb-3">
+          MOBILITZACIÓ VEÏNAL
+        </span>
+        <h2 id="modal-title" class="text-3xl sm:text-4xl font-black uppercase tracking-tight text-zinc-950 leading-none">
+          {content.title}
+        </h2>
+        <p class="mt-2 text-base sm:text-lg font-bold text-red-600">
+          {content.subtitle}
+        </p>
+      </div>
+
+      <p class="text-zinc-700 font-medium text-sm sm:text-base leading-relaxed">
+        {content.desc}
+      </p>
+
+      <!-- Key Details Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 border-4 border-zinc-950 bg-white p-4 sm:p-5 shadow-[4px_4px_0px_0px_rgba(9,9,11,1)]">
+        <!-- Date -->
+        <div class="flex items-start gap-3">
+          <div class="bg-zinc-950 text-yellow-400 p-2 border-2 border-zinc-950 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-black uppercase tracking-wider text-zinc-500">{content.dateLabel}</span>
+            <span class="font-extrabold text-sm sm:text-base text-zinc-950">{content.dateVal}</span>
+          </div>
+        </div>
+
+        <!-- Time -->
+        <div class="flex items-start gap-3">
+          <div class="bg-zinc-950 text-yellow-400 p-2 border-2 border-zinc-950 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-black uppercase tracking-wider text-zinc-500">{content.timeLabel}</span>
+            <span class="font-extrabold text-sm sm:text-base text-red-600">{content.timeVal}</span>
+          </div>
+        </div>
+
+        <!-- Location -->
+        <div class="sm:col-span-2 flex items-start gap-3 pt-2 border-t-2 border-zinc-200">
+          <div class="bg-zinc-950 text-yellow-400 p-2 border-2 border-zinc-950 shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+          </div>
+          <div>
+            <span class="block text-xs font-black uppercase tracking-wider text-zinc-500">{content.locationLabel}</span>
+            <span class="font-extrabold text-sm sm:text-base text-zinc-950 block">{content.locationVal}</span>
+            <span class="text-xs text-zinc-600 font-mono block">{content.addressVal}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-3 pt-2">
+        <button 
+          type="button" 
+          class="modal-close flex-1 bg-zinc-950 text-white hover:bg-red-600 px-6 py-4 font-black uppercase text-sm tracking-wider border-2 border-zinc-950 shadow-[4px_4px_0px_0px_rgba(220,38,38,1)] active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_0px_rgba(220,38,38,1)] transition-colors text-center cursor-pointer"
+        >
+          {content.confirmBtn}
+        </button>
+        <button 
+          type="button" 
+          class="modal-close sm:w-auto bg-white text-zinc-950 hover:bg-zinc-200 px-6 py-4 font-black uppercase text-sm tracking-wider border-2 border-zinc-950 shadow-[4px_4px_0px_0px_rgba(9,9,11,1)] active:translate-x-1 active:translate-y-1 active:shadow-[1px_1px_0px_0px_rgba(9,9,11,1)] transition-colors text-center cursor-pointer"
+        >
+          {content.closeBtn}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('announcement-modal');
+    const modalCard = document.getElementById('modal-card');
+    const closeBtns = document.querySelectorAll('.modal-close');
+    const STORAGE_KEY = 'tgn_concentracio_modal_dismissed_20260918';
+
+    if (!modal || !modalCard) return;
+
+    // Check if the user has already dismissed this modal
+    const isDismissed = () => {
+      try {
+        return localStorage.getItem(STORAGE_KEY) === 'true' || sessionStorage.getItem(STORAGE_KEY) === 'true';
+      } catch (e) {
+        return false;
+      }
+    };
+
+    // Show modal automatically on initial visit
+    const showModal = () => {
+      if (isDismissed()) return;
+
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      modal.classList.add('opacity-100', 'pointer-events-auto');
+      modalCard.classList.remove('scale-95');
+      modalCard.classList.add('scale-100');
+    };
+
+    const hideModal = () => {
+      modal.classList.remove('opacity-100', 'pointer-events-auto');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      modalCard.classList.remove('scale-100');
+      modalCard.classList.add('scale-95');
+
+      // Save state so it does not pop up again
+      try {
+        localStorage.setItem(STORAGE_KEY, 'true');
+        sessionStorage.setItem(STORAGE_KEY, 'true');
+      } catch (e) {
+        // Storage disabled or unavailable
+      }
+    };
+
+    // Small delay to allow initial paint before opening popup smoothly
+    setTimeout(showModal, 350);
+
+    closeBtns.forEach(btn => {
+      btn.addEventListener('click', hideModal);
+    });
+
+    // Close when clicking backdrop outside card
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        hideModal();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !modal.classList.contains('pointer-events-none')) {
+        hideModal();
+      }
+    });
+  });
+</script>
