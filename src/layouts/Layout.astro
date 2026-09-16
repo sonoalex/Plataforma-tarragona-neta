@@ -23,7 +23,8 @@ const t = {
     navPlan: "El Pla",
     navPlatform: "La Plataforma",
     navParticipate: "Participa",
-    navSign: "Signar"
+    navSign: "Signar",
+    madeBy: "Fet altruistament per"
   },
   es: {
     headerBadge: "Plataforma Vecinal",
@@ -35,7 +36,8 @@ const t = {
     navPlan: "El Plan",
     navPlatform: "La Plataforma",
     navParticipate: "Participa",
-    navSign: "Firmar"
+    navSign: "Firmar",
+    madeBy: "Hecho altruistamente por"
   }
 }[lang];
 ---
@@ -218,7 +220,7 @@ const t = {
       </div>
       <div class="pt-8 border-t-2 border-zinc-900 text-zinc-500 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          Fet per <a href="https://elbalcodigital.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">ElBalcoDigital</a>
+          {t.madeBy} <a href="https://elbalcodigital.com" target="_blank" rel="noopener noreferrer" class="text-white hover:text-red-500 transition-colors underline underline-offset-4 decoration-2 decoration-red-600/30 hover:decoration-red-600">elbalcodigital</a>
         </div>
         <div class="text-[10px] text-zinc-600 max-w-md normal-case font-normal leading-relaxed">
           Aquesta plataforma és una iniciativa ciutadana independent de denúncia i acció veïnal. No tenim vinculació amb cap partit polític ni entitat municipal.
